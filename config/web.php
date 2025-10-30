@@ -20,7 +20,6 @@ $config = [
     ],
     'components' => [
         'request' => [
-        
             'cookieValidationKey' => '111',
         ],
         'cache' => [
@@ -35,7 +34,6 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            
             'useFileTransport' => true,
         ],
         'log' => [
@@ -53,11 +51,9 @@ $config = [
 ];
 
 if (YII_ENV_DEV) {
-   
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
-       
     ];
 
     $config['bootstrap'][] = 'gii';

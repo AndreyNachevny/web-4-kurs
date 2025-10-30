@@ -27,7 +27,6 @@ return [
         'request' => [
             'cookieValidationKey' => 'test',
             'enableCsrfValidation' => false,
-            
         ],
     ],
     'params' => $params,

@@ -11,7 +11,6 @@ use app\models\Brands;
 use app\models\Products;
 use yii\helpers\ArrayHelper;
 
-
 class QueryController extends Controller
 {
     public function actionIndex()

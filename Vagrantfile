@@ -10,9 +10,7 @@ required_plugins.each do |plugin|
   end
 end
 
-# IF plugin[s] was just installed - restart required
 if required_plugins_installed
-  # Get CLI command[s] and call again
   system 'vagrant' + ARGV.to_s.gsub(/\[\"|\", \"|\"\]/, ' ')
   exit
 end
@@ -28,9 +26,7 @@ config = {
   example: vagrantfile_dir_path + '/vagrant/config/vagrant-local.example.yml'
 }
 
-# copy config from example if local config not exists
 FileUtils.cp config[:example], config[:local] unless File.exist?(config[:local])
-# read config
 options = YAML.load_file config[:local]
 
 # check github token
@@ -56,22 +52,17 @@ Vagrant.configure(2) do |config|
     vb.name = options['machine_name']
   end
 
-  # machine name (for vagrant console)
+
   config.vm.define options['machine_name']
 
-  # machine name (for guest machine console)
   config.vm.hostname = options['machine_name']
 
-  # network settings
   config.vm.network 'private_network', ip: options['ip']
 
-  # sync: folder 'yii2-app-advanced' (host machine) -> folder '/app' (guest machine)
   config.vm.synced_folder './', '/app', owner: 'vagrant', group: 'vagrant'
 
-  # disable folder '/vagrant' (guest machine)
   config.vm.synced_folder '.', '/vagrant', disabled: true
 
-  # hosts settings (host machine)
   config.vm.provision :hostmanager
   config.hostmanager.enabled            = true
   config.hostmanager.manage_host        = true
@@ -79,8 +70,6 @@ Vagrant.configure(2) do |config|
   config.hostmanager.include_offline    = true
   config.hostmanager.aliases            = domains.values
 
-  # quick fix for failed guest additions installations
-  # config.vbguest.auto_update = false
 
   # provisioners
   config.vm.provision 'shell', path: './vagrant/provision/once-as-root.sh', args: [options['timezone'], options['ip']]

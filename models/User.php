@@ -22,7 +22,6 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
-
     public static function findIdentity($id)
     {
         return static::findOne($id);
@@ -30,7 +29,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        return null; // не используется в базовом шаблоне
+        return null;
     }
 
     public function getId()
@@ -47,7 +46,6 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return false;
     }
-
 
     public static function findByUsername($username)
     {

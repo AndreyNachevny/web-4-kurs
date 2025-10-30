@@ -27,13 +27,10 @@ class QueryForm extends Model
         return [
             ['cities', 'required', 'message' => 'Выберите хотя бы один город'],
             ['cities', 'each', 'rule' => ['in', 'range' => ['Краснодар', 'Сочи', 'Ессентуки']]],
-
             ['brand_name', 'required', 'message' => 'Укажите бренд'],
             ['brand_name', 'string', 'max' => 100],
-
             ['year', 'required', 'message' => 'Укажите год'],
             ['year', 'integer', 'min' => 2000, 'max' => date('Y') + 1, 'message' => 'Год должен быть от 2000 до ' . (date('Y') + 1)],
-
             ['product_name', 'required', 'message' => 'Укажите наименование товара'],
             ['product_name', 'string', 'max' => 255],
         ];
